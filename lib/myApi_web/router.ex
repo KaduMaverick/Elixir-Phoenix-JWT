@@ -24,6 +24,13 @@ defmodule MyApiWeb.Router do
     pipe_through [:api, :jwt_authenticated]
 
     get "/my_user", UserController, :show
+
+    post "/post", PostController, :create
+    patch "/post/:id", PostController, :update
+    get "/all_posts", PostController, :index
+
+    resources "/posts", PostController, only: [:create, :show, :index, :update]
+
     resources "/users", UserController, only: [:create, :show]
   end
 
